@@ -24,9 +24,11 @@ mail_data.loc[mail_data['Category'] == 'ham', 'Category',] = 1
 X = mail_data['Message']
 Y = mail_data['Category']
 
+print("______________________________DATASET______________________________\n")
 print(X)
 print('.............')
 print(Y)
+print("______________________________DATASET______________________________\n\n")
 
 """Train Test Split"""
 
@@ -57,26 +59,32 @@ model.fit(X_train_features, Y_train)
 prediction_on_training_data = model.predict(X_train_features)
 accuracy_on_training_data = accuracy_score(Y_train, prediction_on_training_data)
 
+print("_____________________ACCURACY ON TRAINING SET______________________\n\n")
 print('Accuracy on training data : ', accuracy_on_training_data)
+print("\n\n")
 
 # prediction on test data
 prediction_on_test_data = model.predict(X_test_features)
 accuracy_on_test_data = accuracy_score(Y_test, prediction_on_test_data)
-
+print("_______________________ACCURACY ON TEST SET________________________\n\n")
 print('Accuracy on test data : ', accuracy_on_test_data)
+print("\n\n")
 
 """Prediction on new mail"""
-
-input_mail = ["I've been searching for the right words to thank you for this breather. I promise i wont take your help for granted and will fulfil my promise. You have been wonderful and a blessing at all times."]
+print("________________________PREDICTING THE EMAIL_______________________\n\n")
+x = list(input("Enter the Email You recieved: "))
+print("\n\n")
+input_mail = x
 # convert text to feature vectors
 input_mail_features = feature_extraction.transform(input_mail)
 
 #making prediction
 prediction = model.predict(input_mail_features)
-print(prediction)
-
+# print("Message in Email: " + str(input_mail))
+# print(prediction)
+print("____________________________PREDICTION_____________________________\n\n")
 if (prediction[0]==1):
-  print('HAM MAIL')
+  print('HAM MAIL\n')
 else:
-  print('SPAM MAIL')
-
+  print('SPAM MAIL\n')
+print("____________________________PREDICTION_____________________________\n\n")
